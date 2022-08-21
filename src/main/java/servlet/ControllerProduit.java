@@ -106,6 +106,6 @@ public class ControllerProduit extends HttpServlet{
 	
 	@Override
 	public void destroy() {
-		System.out.println("iam destroy");
+		System.out.println("iam destroy"); System.out.println("iam destroy");
 	}
 }

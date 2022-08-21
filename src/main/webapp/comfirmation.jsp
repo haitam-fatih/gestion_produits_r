@@ -1,8 +1,4 @@
-<%@page import="model.ProduitModel"%>
-<%@page import="metier.entities.Produit"%>
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -18,38 +14,36 @@
   <body>
     <!-- code -->
     <div class="container mt-2 w-50">
-    <%@include file="header.jsp" %>
+    <c:import url="header.jsp" />
 	    <div class="alert alert-success mt-3" role="alert">
-		  <%=request.getAttribute("ajouter")%>
+		  ${ajouter}
 		</div>
 		<div>
 			  <table class="table">
+			  <c:if test="${produit!=null}">
 			  <thead>
-			  <%Produit produit = (Produit)request.getAttribute("produit"); 
-			    if(produit!=null){
-			  %>
 			    <tr>
 			      <th scope="col">#</th>
 			      <td scope="col">label</td>
 			    </tr>
 			    <tr>
 			      <th scope="col">id</th>
-			      <td scope="col"><%=produit.getId()%></td>
+			      <td scope="col">${produit.id}</td>
 			    </tr>
 			    <tr>
 			      <th scope="col">designation</th>
-			      <td scope="col"><%=produit.getDesignation()%></td>
+			      <td scope="col">${produit.designation}</td>
 			    </tr>
 			    <tr>
 			      <th scope="col">prix</th>
-			      <td scope="col"><%=produit.getPrix()%></td>
+			      <td scope="col">${produit.prix}</td>
 			    </tr>
 			    <tr>
 			      <th scope="col">quantite</th>
-			      <td scope="col"><%=produit.getQuantite()%></td>
+			      <td scope="col">${produit.quantite}</td>
 			    </tr>
 			  </thead>
-			  <%}%>
+			  </c:if>
           </table>
 		</div>
     <!-- code -->

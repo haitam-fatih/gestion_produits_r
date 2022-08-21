@@ -1,6 +1,3 @@
-<%@page import="metier.entities.Produit"%>
-<%@page import="java.util.List"%>
-<%@page import="model.ProduitModel"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="en">

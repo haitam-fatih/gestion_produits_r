@@ -1,8 +1,7 @@
-<%@page import="model.ProduitModel"%>
 <%@page import="metier.entities.Produit"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page import="model.ProduitModel"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -18,7 +17,7 @@
   <body>
     <!-- code -->
     <div class="container mt-2 w-50">
-    <%@include file="header.jsp" %>
+   <c:import url="header.jsp" />
 	    <div class="card">
 		  <div class="card-header">
 		    <form action="recherche.produit" method="get">
@@ -27,7 +26,7 @@
 			</form>
 		  </div>
 		  <div class="card-body">
-		    <table class="table">
+		  <table class="table">
 			  <thead>
 			    <tr>
 			      <th scope="col">Designation</th>
@@ -36,18 +35,17 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			  <% ProduitModel produitModel = (ProduitModel)request.getAttribute("produitModel");
-			     List<Produit> produits = produitModel.getProduits(); 
-			     for(Produit produit : produits){	
-			  %>
+			
+			   <c:forEach items="${produitModel.produits}" var="p">
 			    <tr>
-			      <td><%=produit.getDesignation()%></td>
-			      <td><%=produit.getPrix()%></td>
-			      <td><%=produit.getQuantite()%></td>
-			      <td><a onclick="return confirm('vous étes sur que vous voulez supprimer ce produit (<%=produit.getDesignation()%>) ???')" class="btn btn-outline-danger" href="supprimer.produit?id=<%=produit.getId()%>" role="button">supprimer</a></td>
-			      <td><a onclick="return confirm('vous étes sur que vous voulez editer ce produit (<%=produit.getDesignation()%>) ???')" class="btn btn-outline-primary" href="editer.produit?id=<%=produit.getId()%>" role="button">editer</a></td>
+			      <td>${p.designation}</td>
+			      <td>${p.prix}</td>
+			      <td>${p.quantite}</td>
+			      <td><a onclick="return confirm('vous étes sur que vous voulez supprimer ce produit ${p.id} ???')" class="btn btn-outline-danger" href="supprimer.produit?id=${p.id}" role="button">supprimer</a></td>
+			      <td><a onclick="return confirm('vous étes sur que vous voulez editer ce produit ${p.id} ???')" class="btn btn-outline-primary" href="editer.produit?id=${p.id}" role="button">editer</a></td>
 			    </tr>
-			    <%}%>
+			   </c:forEach>
+			   
 			  </tbody>
 			</table>
 		  </div>
